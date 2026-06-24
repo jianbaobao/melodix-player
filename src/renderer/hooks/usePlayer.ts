@@ -1,4 +1,4 @@
-﻿import {useEffect} from "react"
+import {useEffect} from "react"
 import {usePlayerStore} from "../store/player-store"
 import {playerEngine} from "../../player/engine"
-export function usePlayer(){const s=usePlayerStore();useEffect(()=>{playerEngine.setCallbacks({onTimeUpdate:(t,d)=>{s.setCurrentTime(t);s.setDuration(d)},onStateChange:(st)=>s.setPlayerState(st),onTrackEnd:()=>{if(s.repeatMode==="one"){playerEngine.seek(0);playerEngine.play()}else s.next()},onError:()=>s.next(),onLoad:(d)=>s.setDuration(d),onVolumeChange:(v)=>s.setVolume(v)})},[]);const togglePlay=()=>s.playerState==="playing"?s.pause():s.resume();return{...s,togglePlay}}
+export function usePlayer(){const s=usePlayerStore();useEffect(()=>{playerEngine.setCallbacks({onTimeUpdate:(t,d)=>{s.setCurrentTime(t);s.setDuration(d)},onStateChange:(st)=>s.setPlayerState(st),onTrackEnd:()=>{if(s.repeatMode==="one"){playerEngine.seek(0);playerEngine.play()}else s.next()},onError:()=>s.next(),onLoad:(d)=>s.setDuration(d),onVolumeChange:(v:number)=>s.setVolume(v)})},[]);const togglePlay=()=>s.playerState==="playing"?s.pause():s.resume();return{...s,togglePlay}}
