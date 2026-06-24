@@ -1,4 +1,4 @@
-﻿import {Howl,Howler} from "howler"
+import {Howl,Howler} from "howler"
 import {MusicTrack,PlayerState} from "../types"
 type CB={onTimeUpdate?:(t:number,d:number)=>void;onStateChange?:(s:PlayerState)=>void;onTrackEnd?:()=>void;onError?:(e:string)=>void;onLoad?:(d:number)=>void}
 class PlayerEngine{private howl:Howl|null=null;private ct:MusicTrack|null=null;private state:PlayerState="stopped";private vol=0.8;private muted=false;private cbs:CB={};private interval:any=null;getCurrentTime():number{return this.howl?this.howl.seek()as number:0}getDuration():number{return this.howl?this.howl.duration():0}getState():PlayerState{return this.state}getVolume():number{return this.muted?0:this.vol}setCallbacks(c:CB){this.cbs=c}
