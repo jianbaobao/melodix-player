@@ -1,0 +1,13 @@
+﻿import React from "react"
+import {HashRouter,Routes,Route} from "react-router-dom"
+import {Sidebar} from "./components/common/Sidebar"
+import {PlayerBar} from "./components/player/PlayerBar"
+import {Home} from "./pages/Home"
+import {LeaderboardPage} from "./pages/Leaderboard"
+import {SearchPage} from "./pages/Search"
+import {Library} from "./pages/Library"
+import {SettingsPage} from "./pages/Settings"
+import {useKeyboard} from "./hooks/useKeyboard"
+import {useElectronEvents} from "./hooks/useElectron"
+import "./styles/globals.css"
+export default function App(){useKeyboard();useElectronEvents();return(<HashRouter><div className="h-screen flex flex-col bg-surface-950 text-surface-100"><div className="flex flex-1 overflow-hidden"><Sidebar/><main className="flex-1 overflow-y-auto scrollbar-thin"><Routes><Route path="/" element={<Home/>}/><Route path="/leaderboard" element={<LeaderboardPage/>}/><Route path="/search" element={<SearchPage/>}/><Route path="/library" element={<Library/>}/><Route path="/settings" element={<SettingsPage/>}/></Routes></main></div><PlayerBar/></div></HashRouter>)}

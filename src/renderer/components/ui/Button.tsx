@@ -1,0 +1,4 @@
+﻿import React from "react"
+import {clsx} from "clsx"
+interface BProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{variant?:"primary"|"secondary"|"ghost";size?:"sm"|"md"|"lg";icon?:React.ReactNode}
+export function Button({children,variant="primary",size="md",icon,className,...props}:BProps){return(<button className={clsx("inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all",{"bg-primary-600 text-white hover:bg-primary-700":variant==="primary","bg-surface-800 text-surface-100 border border-surface-700":variant==="secondary","text-surface-400 hover:text-surface-100":variant==="ghost","px-2 py-1 text-xs":size==="sm","px-4 py-2 text-sm":size==="md"},className)} {...props}>{icon&&<span className="w-4 h-4">{icon}</span>}{children}</button>)}

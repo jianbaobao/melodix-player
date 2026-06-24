@@ -1,0 +1,8 @@
+﻿import React from "react"
+import {Play} from "lucide-react"
+import {clsx} from "clsx"
+import {Playlist,Album} from "../../../types"
+interface GItem{id:string;title:string;subtitle:string;cover:string}
+interface P{items:GItem[];onPlay?:(i:GItem)=>void;className?:string}
+export function CardGrid({items,onPlay,className}:P){return(<div className={clsx("grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5",className)}>{items.map(i=>(<div key={i.id} className="group relative bg-surface-800/30 rounded-xl overflow-hidden hover:bg-surface-800/50 cursor-pointer" onClick={()=>onPlay?.(i)}><div className="relative aspect-square"><img src={i.cover} alt={i.title} className="w-full h-full object-cover" onError={(e)=>{(e.target as HTMLImageElement).src="https://via.placeholder.com/200/3b6cff/ffffff?text=M"}}/><div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 flex items-center justify-center"><button className="p-3 bg-primary-600 rounded-full text-white opacity-0 group-hover:opacity-100 transition-all"><Play size={20} fill="white"/></button></div></div><div className="p-3"><p className="text-sm font-medium text-surface-100 truncate">{i.title}</p><p className="text-xs text-surface-500 truncate">{i.subtitle}</p></div></div>))}</div>)}
+export function toCardItems(items:Playlist[]|Album[],type:"playlist"|"album"){return items.map(i=>({id:i.id,title:i.name,subtitle:"artist" in i?(i as Album).artist:String((i as Playlist).trackCount)+" 首",cover:i.cover}))}

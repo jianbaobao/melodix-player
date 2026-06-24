@@ -1,0 +1,4 @@
+﻿import React,{useRef,useCallback} from "react"
+import {clsx} from "clsx"
+interface SProps{value:number;min?:number;max?:number;step?:number;onChange:(v:number)=>void;className?:string}
+export function Slider({value,min=0,max=100,step=1,onChange,className}:SProps){const ref=useRef<HTMLDivElement>(null);const pct=((value-min)/(max-min))*100;const update=useCallback((x:number)=>{if(!ref.current)return;const rect=ref.current.getBoundingClientRect();const ratio=Math.max(0,Math.min(x-rect.left,rect.width))/rect.width;onChange(Math.round((min+ratio*(max-min))/step)*step)},[min,max,step,onChange]);return(<div ref={ref} className={clsx("relative h-1 cursor-pointer group",className)} onMouseDown={(e)=>update(e.clientX)}><div className="absolute inset-0 rounded-full bg-surface-700"/><div className="absolute left-0 top-0 rounded-full bg-primary-500" style={{width:pct+"%",height:"100%"}}/></div>)}

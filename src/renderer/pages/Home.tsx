@@ -1,0 +1,7 @@
+﻿import React,{useEffect} from "react"
+import {TrendingUp,Music} from "lucide-react"
+import {useMusicStore} from "../store/music-store"
+import {usePlayerStore} from "../store/player-store"
+import {TrackList} from "../components/common/TrackList"
+import {LoadingSpinner} from "../components/common/LoadingSpinner"
+export function Home(){const{trendingTracks,recommendedPlaylists,isLoading,fetchTrending}=useMusicStore();const{playPlaylist}=usePlayerStore();useEffect(()=>{fetchTrending()},[]);if(isLoading)return<LoadingSpinner text="\u52A0\u8F7D\u4E2D..."/>;return(<div className="p-6 space-y-8"><div className="relative rounded-2xl overflow-hidden h-48 bg-gradient-to-r from-primary-900 via-primary-800 to-purple-900"><div className="relative h-full flex items-center px-8"><div><h1 className="text-3xl font-bold text-white mb-2">Melodix Player</h1><p className="text-primary-200 text-lg">\u53D1\u73B0\u4F60\u559C\u7231\u7684\u97F3\u4E50</p></div></div></div><section><h2 className="text-xl font-bold text-surface-100 flex items-center gap-2 mb-4"><TrendingUp size={20} className="text-primary-400"/>\u70ED\u95E8\u6B4C\u66F2</h2><div className="bg-surface-800/20 rounded-xl border border-surface-700/30"><TrackList tracks={trendingTracks.slice(0,15)}/></div></section></div>)}

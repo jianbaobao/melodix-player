@@ -1,0 +1,3 @@
+﻿import {useEffect} from "react"
+import {usePlayerStore} from "../store/player-store"
+export function useKeyboard(){const{next,previous,seek,setVolume,togglePlay}=usePlayerStore();useEffect(()=>{const h=(e:KeyboardEvent)=>{const t=e.target as HTMLElement;if(t.tagName==="INPUT"||t.tagName==="TEXTAREA")return;switch(e.code){case"Space":e.preventDefault();togglePlay();break;case"ArrowRight":e.preventDefault();seek(usePlayerStore.getState().currentTime+5);break;case"ArrowLeft":e.preventDefault();seek(usePlayerStore.getState().currentTime-5);break}};window.addEventListener("keydown",h);return()=>window.removeEventListener("keydown",h)},[])}

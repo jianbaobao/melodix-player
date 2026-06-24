@@ -1,0 +1,5 @@
+﻿export function formatTime(s:number):string{if(!s||isNaN(s))return"0:00";const m=Math.floor(s/60);const sec=Math.floor(s%60);return m+":"+(sec<10?"0":"")+sec}
+export function formatCount(c:number):string{if(!c)return"0";if(c>=1e8)return(c/1e8).toFixed(1).replace(/\.0$/,"")+"\u4EBF";if(c>=1e4)return(c/1e4).toFixed(1).replace(/\.0$/,"")+"\u4E07";return c.toString()}
+export function generateId():string{return Date.now().toString(36)+Math.random().toString(36).substring(2,9)}
+export function parseLyrics(lrc:string):Array<{time:number;text:string}>{if(!lrc)return[];return lrc.split("\n").map(l=>{const m=l.match(/\[(\d{2}):(\d{2})\.(\d{2,3})\]/);if(m){const t=parseInt(m[1])*60+parseInt(m[2])+parseInt(m[3].padEnd(3,"0"))/1e3;const txt=l.replace(/\[.*?\]/,"").trim();return txt?{time:t,text:txt}:null}return null}).filter(Boolean)as any}
+export function getCurrentLyric(lyrics:Array<{time:number;text:string}>,ct:number){if(!lyrics.length)return{current:"",index:-1};for(let i=lyrics.length-1;i>=0;i--){if(ct>=lyrics[i].time)return{current:lyrics[i].text,next:lyrics[i+1]?.text,index:i}}return{current:"",index:-1}}
