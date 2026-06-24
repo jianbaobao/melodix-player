@@ -1,10 +1,30 @@
-﻿name: Release
-on: { release: { types: [published] } }
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
 jobs:
   build:
-    name: Build Release
-    runs-on: ubuntu-latest
+    name: Build Installers
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
-      - run: npm install && npm run build
-        env: { ELECTRON_MIRROR: "https://npmmirror.com/mirrors/electron/", npm_config_registry: "https://registry.npmmirror.com" }
+      - uses: actions/setup-node@v4
+        with: { node-version: "20" }
+      - run: npm install
+        env:
+          ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
+          npm_config_registry: https://registry.npmmirror.com
+      - run: npm run build
+      - run: npx electron-builder --publish always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Melodix-${{ matrix.os }}
+          path: release/*
