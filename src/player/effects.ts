@@ -1,0 +1,1 @@
+﻿export const equalizerPresets=[{name:"\u9ED8\u8BA4",bands:[0,0,0,0,0,0,0,0,0,0]},{name:"\u6D41\u884C",bands:[3,4,5,3,1,0,1,2,3,4]},{name:"\u6447\u6EDA",bands:[5,3,-1,-2,-1,1,3,5,6,5]},{name:"\u91CD\u4F4E\u97F3",bands:[6,5,3,1,0,-1,-2,-3,-4,-5]}]

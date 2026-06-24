@@ -1,0 +1,2 @@
+﻿class MemCache{private c=new Map();private max:number;constructor(m=300){this.max=m}get<T>(k:string):T|null{const e=this.c.get(k);if(!e)return null;if(Date.now()-e.t>e.ttl){this.c.delete(k);return null}return e.d}set<T>(k:string,d:T,ttl=300000){if(this.c.size>=this.max){const f=this.c.keys().next().value;if(f)this.c.delete(f)}this.c.set(k,{d,t:Date.now(),ttl})}clear(){this.c.clear()}}
+export const apiCache=new MemCache(200);export const searchCache=new MemCache(50)

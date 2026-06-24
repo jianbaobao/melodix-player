@@ -1,0 +1,15 @@
+﻿# Melodix Player
+
+> \u5F00\u6E90\u8DE8\u5E73\u53F0\u97F3\u4E50\u64AD\u653E\u5668
+
+## \u7279\u6027
+- \u591A\u683C\u5F0F\u652F\u6301: MP3/FLAC/WAV/AAC/OGG
+- \u52A0\u5BC6\u89E3\u7801: NCM/QMC/KGM/KWM
+- \u591A\u5E73\u53F0API: \u7F51\u6613\u4E91\u97F3\u4E50
+- \u6DF1\u8272UI, \u6B4C\u8BCD\u540C\u6B65, \u6392\u884C\u699C
+- GitHub Actions CI/CD
+
+## \u5F00\u53D1
+npm install
+npm run dev
+npm run build

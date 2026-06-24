@@ -1,0 +1,3 @@
+﻿export function arrayBufferToHex(b:ArrayBuffer):string{return Array.from(new Uint8Array(b)).map(b=>b.toString(16).padStart(2,"0")).join("")}
+export function xorBuffer(a:ArrayBuffer,b:ArrayBuffer):ArrayBuffer{const x=new Uint8Array(a),y=new Uint8Array(b),r=new Uint8Array(Math.min(x.length,y.length));for(let i=0;i<r.length;i++)r[i]=x[i]^y[i];return r.buffer}
+export async function aesDecrypt(enc:ArrayBuffer,key:ArrayBuffer,iv:ArrayBuffer):Promise<ArrayBuffer>{const k=await crypto.subtle.importKey("raw",key,{name:"AES-CBC"},false,["decrypt"]);return crypto.subtle.decrypt({name:"AES-CBC",iv},k,enc)}
