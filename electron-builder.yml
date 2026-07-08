@@ -8,9 +8,6 @@ win:
       arch: [x64]
     - target: portable
       arch: [x64]
-  certificateFile: ''
-  certificatePassword: ''
-  sign: false
 mac:
   target:
     - target: dmg
