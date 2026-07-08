@@ -1,1 +1,0 @@
-export default { content: ["./index.html","./src/renderer/**/*.{js,ts,jsx,tsx}"], theme: { extend: { colors: { primary: { 500: "#3b6cff",600:"#2550f5" }, surface: { 800:"#343a40",900:"#212529",950:"#0d1117" } } } }, plugins: [] }
