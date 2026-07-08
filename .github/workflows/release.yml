@@ -1,7 +1,7 @@
 name: Release Build
 on:
   push:
-    tags: [v*]
+    tags: ["v*"]
 permissions:
   contents: write
 
@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 20 }
+        with: { node-version: "20" }
 
       - name: Install dependencies
         run: npm install
@@ -27,16 +27,18 @@ jobs:
         run: npm run build
         env:
           ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
-          npm_config_registry: https://registry.npmmirror.com
 
       - name: Package installer
-        run: npx electron-builder --publish always
+        run: npx electron-builder --config electron-builder.yml
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          name: Melodix-${{ matrix.os }}
-          path: release/
+          files: release/*
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
