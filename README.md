@@ -1,24 +1,22 @@
-# Melodix Player 旋律演奏者
+# Melodix Player
 
 [![CI](https://github.com/jianbaobao/melodix-player/actions/workflows/ci.yml/badge.svg)](https://github.com/jianbaobao/melodix-player/actions/workflows/ci.yml)
 
-基于 Electron + React + TypeScript 的开源跨平台音乐播放器。支持多格式、加密解码、多平台 API、深色 UI、歌词同步、排行榜。
+Open source cross-platform music player.
 
-## 快速开始
+## Windows Installation
 
-```bash
-git clone https://github.com/jianbaobao/melodix-player.git
-cd melodix-player
+1. Go to https://github.com/jianbaobao/melodix-player/releases
+2. Download Melodix-Player-Setup-1.0.0.exe
+3. Double click to install
+4. Launch Melodix Player from desktop shortcut
+
+## Development
+
 npm install
-npm run dev    # 开发模式
-npm run build  # 构建
-```
+npm run dev
+npm run build
 
-## 发布版本
+## Release
 
-```bash
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-自动编译 Windows(.exe) / macOS(.dmg) / Linux(.AppImage) 安装包。
+git tag v1.0.0 && git push origin v1.0.0 to trigger auto-build.
