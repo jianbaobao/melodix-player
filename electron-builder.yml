@@ -20,3 +20,12 @@ linux:
     - target: deb
       arch: [x64]
   category: Audio
+  maintainer: jianbaobao <3146378701@qq.com>
+  vendor: jianbaobao
+  desktop:
+    entry:
+      Name: Melodix Player
+      GenericName: Music Player
+      Terminal: 'false'
+      Type: Application
+      Categories: Audio;Music;Player;AudioVideo;
