@@ -2,6 +2,9 @@ appId: com.melodix.player
 productName: Melodix Player
 directories: { output: release, buildResources: build }
 files: [dist/**/*, package.json]
+publish:
+  provider: github
+  releaseType: release
 win:
   target:
     - target: nsis
